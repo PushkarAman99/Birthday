@@ -361,25 +361,50 @@ section {
   }
 
   function confetti() {
-    for (let i = 0; i < 120; i++) {
-      const el = document.createElement("div");
-      el.style.position = "fixed";
-      el.style.width = "8px";
-      el.style.height = "8px";
-      el.style.background = `hsl(${Math.random()*360},100%,50%)`;
-      el.style.top = "-10px";
-      el.style.left = Math.random() * window.innerWidth + "px";
-      document.body.appendChild(el);
+  const count = Math.min(60, Math.floor(window.innerWidth / 10)); // fewer particles on small screens
+  const confettis = [];
 
-      let fall = setInterval(() => {
-        el.style.top = el.offsetTop + 6 + "px";
-        if (el.offsetTop > window.innerHeight) {
-          clearInterval(fall);
-          el.remove();
-        }
-      }, 20);
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement("div");
+    el.style.position = "fixed";
+    el.style.width = "6px"; // smaller size for mobile
+    el.style.height = "6px";
+    el.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    el.style.top = "-10px";
+    el.style.left = Math.random() * window.innerWidth + "px";
+    el.style.borderRadius = "50%"; // optional for smoother look
+    document.body.appendChild(el);
+
+    confettis.push({
+      el,
+      x: parseFloat(el.style.left),
+      y: -10,
+      speed: 2 + Math.random() * 3, // random fall speed
+      swing: Math.random() * 2 - 1 // horizontal swing
+    });
+  }
+
+  function animate() {
+    for (let i = confettis.length - 1; i >= 0; i--) {
+      const c = confettis[i];
+      c.y += c.speed;
+      c.x += c.swing;
+      c.el.style.top = c.y + "px";
+      c.el.style.left = c.x + "px";
+
+      if (c.y > window.innerHeight) {
+        c.el.remove();
+        confettis.splice(i, 1);
+      }
+    }
+    if (confettis.length > 0) {
+      requestAnimationFrame(animate);
     }
   }
+
+  requestAnimationFrame(animate);
+}
+
 
   // CHANGE DATE HERE
   const birthDate = new Date("2003-02-12");
@@ -450,3 +475,4 @@ navigator.vibrate([30, 50, 30]); // short-long-short
 
 </body>
 </html>
+
