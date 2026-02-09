@@ -361,26 +361,29 @@ section {
   }
 
   function confetti() {
-  const count = Math.min(60, Math.floor(window.innerWidth / 10)); // fewer particles on small screens
+  const count = Math.min(60, Math.floor(window.innerWidth / 10));
   const confettis = [];
 
   for (let i = 0; i < count; i++) {
     const el = document.createElement("div");
     el.style.position = "fixed";
-    el.style.width = "6px"; // smaller size for mobile
+    el.style.width = "6px";
     el.style.height = "6px";
     el.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
     el.style.top = "-10px";
     el.style.left = Math.random() * window.innerWidth + "px";
-    el.style.borderRadius = "50%"; // optional for smoother look
+    el.style.borderRadius = "50%";
+    el.style.opacity = Math.random() * 0.5 + 0.5; // slight variation
     document.body.appendChild(el);
 
     confettis.push({
       el,
       x: parseFloat(el.style.left),
       y: -10,
-      speed: 2 + Math.random() * 3, // random fall speed
-      swing: Math.random() * 2 - 1 // horizontal swing
+      speed: 2 + Math.random() * 2,
+      angle: Math.random() * Math.PI * 2, // random starting angle
+      swingSpeed: 0.05 + Math.random() * 0.05, // speed of horizontal oscillation
+      swingAmplitude: 20 + Math.random() * 10 // horizontal amplitude
     });
   }
 
@@ -388,7 +391,8 @@ section {
     for (let i = confettis.length - 1; i >= 0; i--) {
       const c = confettis[i];
       c.y += c.speed;
-      c.x += c.swing;
+      c.angle += c.swingSpeed;
+      c.x += Math.sin(c.angle) * 1.5; // wavy motion
       c.el.style.top = c.y + "px";
       c.el.style.left = c.x + "px";
 
@@ -475,4 +479,5 @@ navigator.vibrate([30, 50, 30]); // short-long-short
 
 </body>
 </html>
+
 
