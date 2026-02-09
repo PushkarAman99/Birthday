@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Vaibhavi 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #7f7fd5, #86a8e7, #91eae4);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+section {
+  padding: 50px 16px;
+}
+
+
+    section {
+      padding: 70px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1.1;
+      animation: pop 1.2s ease;
+    }
+
+    h2 {
+        font-size: clamp(1.3rem, 5vw, 1.8rem);
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    button {
+        width: 100%;
+  max-width: 280px;
+      margin-top: 30px;
+      padding: 16px 34px;
+      border-radius: 50px;
+      border: none;
+      background: white;
+      color: #5f6cff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    
+    .card-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 22px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .gallery img {
+      width: 260px;
+      height: 350px;
+      border-radius: 20px;
+      object-fit:fill;
+      flex-shrink: 0;
+       scroll-snap-align: center;
+    }
+
+    .hidden { display: none; }
+
+    @keyframes pop {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    .floating {
+    position: fixed;
+    bottom: -50px;
+    font-size: 22px;
+    opacity: 0.35;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    }
+
+    @keyframes floatUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-120vh);
+    }
+}
+/* TIMELINE WRAPPER */
+.timeline {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* CENTER LINE */
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: translateX(-50%);
+}
+
+/* MEMORY CARD */
+.memory {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  border-radius: 18px;
+  width: 45%;
+  margin: 20px 0;
+}
+
+/* LEFT / RIGHT */
+.memory:nth-child(odd) {
+  margin-left: auto;
+}
+
+.memory h4 {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+  .timeline::before {
+    left: 12px;
+  }
+
+  .memory {
+    width: 100%;
+    margin-left: 30px !important;
+  }
+}
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.final-letter {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding: 35px 30px;
+  border-radius: 24px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.final-letter span {
+  display: block;
+  margin-top: 25px;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC (tap to play for mobile) -->
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎉 HERO -->
+<section>
+  <h1>Happy Birthday, Vaibhavi Narkhede 🎂</h1>
+  <h2 id="type"></h2>
+  <button onclick="playMusic(); vibrate()">Tap for vibes 🎵</button>
+</section>
+
+<!-- 💌 MESSAGE -->
+<section class="fade">
+  <p>
+    Today is special.  
+    Not because of cake or gifts —  
+    but because **YOU** exist 💕  
+    And honestly, the world feels better with you in it.
+  </p>
+</section>
+
+<!-- 🎁 SURPRISE -->
+<section class="fade">
+  <button onclick="reveal()">Don’t tap this 👀</button>
+  <div id="secret" class="hidden">
+    <h2>💌 A Little Truth</h2>
+    <p>
+      You’re kind, chaotic, beautiful, and unforgettable.  
+      Thank you for being my favorite person. 
+      Thank you for being exactly who you are.
+    </p>
+  </div>
+</section>
+
+<!-- 💕 CARDS -->
+<!-- <section>
+  <h2>Reasons You’re Elite ✨</h2>
+  <div class="card-wrap">
+    <div class="card">Your laugh is contagious</div>
+    <div class="card">You care deeply</div>
+    <div class="card">You’re effortlessly cool</div>
+    <div class="card">Life hits different with you</div>
+    <div class="card">Your smile fixes bad days</div>
+
+  </div>
+</section> -->
+<section class="fade">
+  <h2>Little Notes Just for You 💌</h2>
+  
+
+  <div class="card-wrap">
+    <div class="card secret-note" data-msg="You make ordinary days feel special 💖">
+      Click me 🌸
+    </div>
+    <div class="card secret-note" data-msg="I’m really glad the universe made you ✨">
+      Click me 🌙
+    </div>
+    <div class="card secret-note" data-msg="You’ll always be someone I care about 💕">
+      Click me 🌼
+    </div>
+  </div>
+</section>
+
+
+<!-- 📸 GALLERY -->
+<section class="fade">
+  <h2>Core Memories 📸</h2>
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpeg">
+    <img src="photo3.jpeg">
+  </div>
+</section>
+
+<!-- ⏳ COUNTER -->
+<section class="fade">
+  <h2>Our Timeline 🕰️</h2>
+
+  <div class="timeline">
+    <div class="memory fade">
+      <h4>✨ The Beginning</h4>
+      <p>The day we met and everything changed.</p>
+    </div>
+
+    <div class="memory fade">
+      <h4>😂 Inside Jokes</h4>
+      <p>Laughing until nothing else mattered.</p>
+    </div>
+
+    <div class="memory fade">
+      <h4>🌙 Late Nights</h4>
+      <p>Talks that lasted longer than they should’ve.</p>
+    </div>
+
+    <div class="memory fade">
+      <h4>🎂 Today</h4>
+      <p>Celebrating you—exactly as you are.</p>
+    </div>
+  </div>
+</section>
+<section class="fade">
+  <h2>One Last Thing 💭</h2>
+
+  <div class="final-letter fade">
+    I don’t know where life will take us,
+    or how much things will change —
+    but I know this:
+
+    You matter.
+    You always will.
+
+    Thank you for being you,
+    and for existing in my world 💖
+
+    <span>— Pushkar</span>
+  </div>
+</section>
+
+
+
+<!-- 🎊 CONFETTI -->
+<section class="fade">
+<button onclick="confetti(); vibrate(80)">Celebrate 🎉</button>
+</section>
+
+<script>
+  // TYPE EFFECT
+  const text = "You’re one of a kind 💖";
+  let i = 0;
+  function typeText() {
+    if (i < text.length) {
+      document.getElementById("type").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeText, 90);
+    }
+  }
+  typeText();
+
+  function playMusic() {
+    document.getElementById("music").play();
+  }
+
+  function reveal() {
+    document.getElementById("secret").style.display = "block";
+    confetti();
+  }
+
+  function confetti() {
+    for (let i = 0; i < 120; i++) {
+      const el = document.createElement("div");
+      el.style.position = "fixed";
+      el.style.width = "8px";
+      el.style.height = "8px";
+      el.style.background = `hsl(${Math.random()*360},100%,50%)`;
+      el.style.top = "-10px";
+      el.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(el);
+
+      let fall = setInterval(() => {
+        el.style.top = el.offsetTop + 6 + "px";
+        if (el.offsetTop > window.innerHeight) {
+          clearInterval(fall);
+          el.remove();
+        }
+      }, 20);
+    }
+  }
+
+  // CHANGE DATE HERE
+  const birthDate = new Date("2003-02-12");
+
+  setInterval(() => {
+    const days = Math.floor((new Date() - birthDate) / (1000*60*60*24));
+    document.getElementById("counter").innerText =
+      days + " days of being iconic 💖";
+  }, 1000);
+
+  const emojis = ["💖","🎈","✨","💕"];
+
+  setInterval(() => {
+  const el = document.createElement("div");
+  el.className = "floating";
+  el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+  el.style.left = Math.random() * window.innerWidth + "px";
+  el.style.animationDuration = (6 + Math.random() * 6) + "s";
+  el.style.fontSize = (20 + Math.random() * 40) + "px";
+
+  document.body.appendChild(el);
+
+  setTimeout(() => el.remove(), 12000);
+}, 900);
+
+document.querySelectorAll(".secret-note").forEach(note => {
+  note.addEventListener("click", () => {
+    note.innerText = note.dataset.msg;
+    note.style.background = "rgba(255,255,255,0.35)";
+  });
+});
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
+
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+let letterCelebrated = false;
+
+const letter = document.querySelector(".final-letter");
+
+const letterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !letterCelebrated) {
+      confetti();
+      letterCelebrated = true;
+    }
+  });
+}, { threshold: 0.6 });
+
+letterObserver.observe(letter);
+function vibrate(duration = 50) {
+  if (navigator.vibrate) {
+    navigator.vibrate(duration);
+  }
+}
+navigator.vibrate([30, 50, 30]); // short-long-short
+
+
+
+</script>
+
+</body>
+</html>
