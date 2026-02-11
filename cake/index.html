@@ -186,10 +186,10 @@ new THREE.FontLoader().load(
 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json',
 function(font){
   let text = new THREE.Mesh(
-    new THREE.TextGeometry("Happy Birthday Vaibhavi",{font:font,size:0.8,height:0.2}),
+    new THREE.TextGeometry("Happy Birthday Vaibhavi",{font:font,size:0.6,height:0.2}),
     new THREE.MeshStandardMaterial({color:0xff6f91})
   );
-  text.position.set(-5,6,0); scene.add(text);
+  text.position.set(-6,6,0); scene.add(text);
 });
 
 // Actions
@@ -238,7 +238,7 @@ function animate(){
 
   // Camera shake stop after 5 sec
   if(shake){
-    if(Date.now()-shakeStart<5000){ camera.position.x=Math.sin(Date.now()*0.05)*0.3; }
+    if(Date.now()-shakeStart<400){ camera.position.x=Math.sin(Date.now()*0.05)*0.3; }
     else{ shake=false; camera.position.x=0; }
   }
 
@@ -254,3 +254,4 @@ window.addEventListener("resize",()=>{
 </script>
 </body>
 </html>
+
